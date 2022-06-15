@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Здоровый Мир {% endblock title %}
+  
+{% block content %}
+
+
+
+    <div class="site-blocks-cover" style="background-image: url('https://scontent.foss1-1.fna.fbcdn.net/v/t39.30808-6/272082992_473635384360019_4802966364253274338_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=a26aad&_nc_ohc=RwXl5JWo-DsAX_e3JQN&_nc_ht=scontent.foss1-1.fna&oh=00_AT8_XvVP4lCCn1O9VnVbpJHqxOfPx23C8laMIv4RHwyBbg&oe=62A7F682');">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 mx-auto order-lg-2 align-self-center">
+            <div class="site-block-cover-content text-center">
+              <h2 class="sub-title">Наполни жизнь здоровьем</h2>
+              <h1>Здоровый Мир</h1>
+              <p>
+                <a href="{% url 'cart' %}" class="btn btn-primary px-5 py-3">Заказать сейчас</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row align-items-stretch section-overlap">
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+            <div class="banner-wrap bg-primary h-100">
+              <a href="#" class="h-100">
+                <h5> Первая сеть аптек <br>  в г.Ош</h5>
+                <p>
+                 
+~Первая сеть аптек на юге Кыргызстана <br>
+
+                </p>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+            <div class="banner-wrap h-100">
+              <a href="#" class="h-100">
+                <h5>Постоянные акции</h5>
+                <p>
+                  ~Только качественная <br> продукция <br>
+
+                </p>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+            <div class="banner-wrap bg-warning h-100">
+              <a href="#" class="h-100">
+                <h5> Качественная  <br> продукция</h5>
+                <p>
+                  ~Широкий ассортимент <br>
+~Фарм.справочник 160 
+                </p>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="title-section text-center col-12">
+            <h2 class="text-uppercase">Наши Лекарства</h2>
+          </div>
+        </div>
+
+        <div class="row">
+          {% for product in products %}
+          <div class="col-sm-6 col-lg-4 text-center item mb-4">
+            <!-- <span class="tag">Sale</span> -->
+            <a href="{% url 'shop-single' %}"> <img src="{{product.image.url}}" alt="Image"></a>
+            <h3 class="text-dark"><a href="{% url 'shop-single' %}">{{product.name}}</a></h3>
+            <p class="price">{{product.price}} сом</p>
+            <!-- <p class="price"><del>95.00</del> &mdash; $55.00</p> -->
+          </div>
+          {% endfor %}
+        </div>
+        <div class="row mt-5">
+          <div class="col-12 text-center">
+            <a href="{% url 'products' %}" class="btn btn-primary px-4 py-3">Посмотреть все товары</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="title-section text-center col-12">
+            <h2 class="text-uppercase">Новые Продукты</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 block-3 products-wrap">
+            <div class="nonloop-block-3 owl-carousel">
+              {% for product in productss %}
+              <div class="text-center item mb-4">
+                <a href="{% url 'shop-single' %}"> <img src="{{product.image.url}}" alt="Image"></a>
+                <h3 class="text-dark"><a href="{% url 'shop-single' %}">{{product.name}}</a></h3>
+                <p class="price">{{product.price}} сом</p>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="title-section text-center col-12">
+            <h2 class="text-uppercase">Отзывы</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 block-3 products-wrap">
+            <div class="nonloop-block-3 no-direction owl-carousel">
+              {% for testimony in feedbacks %}
+              <div class="testimony">
+                <blockquote>
+                  <img src="{{testimony.image.url}}" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+                  <p>&ldquo;{{testimony.review}}&rdquo;</p>
+                </blockquote>
+
+                <p>&mdash; {{testimony.firstLastName}}</p>
+              </div>
+              {% endfor %}
+        
+      
+        
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section bg-secondary bg-image" style="background-image: url('C:/Users/bakiy/Downloads/pharma/pharma/images/bg_2.jpg');">
+      <div class="container">
+        <div class="row align-items-stretch">
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('https://scontent.foss1-1.fna.fbcdn.net/v/t1.6435-9/130498082_207290537661173_3839349556469037602_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=9267fe&_nc_ohc=u_x04wEAAkwAX-LwZJz&_nc_ht=scontent.foss1-1.fna&oh=00_AT8diuoJ3G5dcMKAn90NQAxDyi0cU3JbxDyKZcrHbDbqtQ&oe=62C84C74');">
+              <div class="banner-1-inner align-self-center">
+                </p>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('https://scontent.foss1-1.fna.fbcdn.net/v/t39.30808-6/244409998_406698171053741_9144665451599337564_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=a26aad&_nc_ohc=sLD3Cfn2s8AAX8c1HGe&_nc_ht=scontent.foss1-1.fna&oh=00_AT8OO-QsF4Hw0xjDblYuhIcFv8xTt3BdCxn769_OTYH_7A&oe=62A6785F');">
+              <div class="banner-1-inner ml-auto  align-self-center">
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+
+{% endblock content %}

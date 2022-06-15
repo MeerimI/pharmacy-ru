@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}  Продукты {% endblock title %}
+  
+{% block content %}
+
+ 
+
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="{% url 'index' %}">Главное</a> <span class="mx-2 mb-0">/</span> <a
+              href="{% url 'products' %}">Лекарства</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">{{product.name}}</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 mr-auto">
+            <div class="border text-center">
+              <img src="{{product.image.url}}" alt="Image" class="img-fluid p-5">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h2 class="text-black">{{product.name}}</h2>
+            <p>{{product.description}}</p>
+            
+
+            <!-- <p><del>$95.00</del>  <strong class="text-primary h4">$55.00</strong></p> -->
+            <p> <strong class="text-primary h4">{{product.price}} сом</strong></p>
+
+            
+            
+            <!-- <form action="/get_count/" method="GET"> -->
+              <!-- {% csrf_token %} -->
+            <div class="mb-5">
+              <div class="input-group mb-3" style="max-width: 220px;">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                </div>
+                <input type="text" class="form-control text-center" name="count_of_product" value="1" placeholder=""
+                  aria-label="Example text with button addon" aria-describedby="button-addon1">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                  </div>
+                </div>
+                
+              </div>
+            <!-- </form> -->
+              <p><a href="{% url 'addToCart' pk=product.pk %}" type="submit" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Добавить в корзину</a></p>
+            <div class="mt-5">
+              <ul class="nav nav-pills mb-3 custom-pill" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                    aria-controls="pills-home" aria-selected="true">Коротко о товаре</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                    aria-controls="pills-profile" aria-selected="false">Характеристика</a>
+                </li>
+            
+              </ul>
+              <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+      
+                  <table class="table custom-table">
+            
+                    <tbody>
+                      <tr>
+                        <td>Код товара</td>
+                        <td class="bg-light">{{product.code_product}}</td>
+                      </tr>
+                      <tr>
+                        <td>Производитель</td>
+                        <td class="bg-light">{{product.manufacturer}}</td>
+                      </tr>
+                      <tr>
+                        <td>Страна происхождения</td>
+                        <td class="bg-light">{{product.country}}</td>
+                      </tr>
+                      <tr>
+                        <td>Вес/объем/штук</td>
+                        <td class="bg-light">{{product.weight_volume}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            
+                  <table class="table custom-table">
+            
+                    <tbody>
+                      <tr>
+                        <td>Минимальный возраст от</td>
+                        <td class="bg-light">{{product.age_limit}}</td>
+                      </tr>
+                      <tr>
+                        <td>Допустимая температура хранения, °С</td>
+                        <td class="bg-light">{{product.temperature}}</td>
+                      </tr>
+                      <tr>
+                        <td>Срок годности</td>
+                        <td class="bg-light">{{product.expiration_date}}</td>
+                      </tr>
+                      <tr>
+                        <td>Дата изготовления</td>
+                        <td class="bg-light">{{product.date_manufacture}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            
+                </div>
+            
+              </div>
+            </div>
+
+    
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section bg-secondary bg-image" style="background-image: url('C:/Users/bakiy/Downloads/pharma/pharma/images/bg_2.jpg');">
+      <div class="container">
+        <div class="row align-items-stretch">
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('https://scontent.foss1-1.fna.fbcdn.net/v/t1.6435-9/130498082_207290537661173_3839349556469037602_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=9267fe&_nc_ohc=u_x04wEAAkwAX-LwZJz&_nc_ht=scontent.foss1-1.fna&oh=00_AT8diuoJ3G5dcMKAn90NQAxDyi0cU3JbxDyKZcrHbDbqtQ&oe=62C84C74');">
+              <div class="banner-1-inner align-self-center">
+                </p>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('https://scontent.foss1-1.fna.fbcdn.net/v/t39.30808-6/244409998_406698171053741_9144665451599337564_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=a26aad&_nc_ohc=sLD3Cfn2s8AAX8c1HGe&_nc_ht=scontent.foss1-1.fna&oh=00_AT8OO-QsF4Hw0xjDblYuhIcFv8xTt3BdCxn769_OTYH_7A&oe=62A6785F');">
+              <div class="banner-1-inner ml-auto  align-self-center">
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+
+{% endblock content %}

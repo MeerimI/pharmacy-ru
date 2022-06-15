@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}  Продукты {% endblock title %}
+  
+{% block content %}
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0">
+            <a href="{% url 'index' %}">Главное</a> <span class="mx-2 mb-0">/</span>
+            <strong class="text-black">Заказ</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        
+        <form action="addOrder/" method="post">
+          {% csrf_token %}
+        <div class="row">
+          <div class="col-md-6 mb-5 mb-md-0">
+            <h2 class="h3 mb-3 text-black">Платежные Реквизиты</h2>
+            <div class="p-3 p-lg-5 border">
+              <div class="form-group">
+                <label for="c_country" class="text-black">Страна <span class="text-danger">*</span></label>
+                <input required type="text" name="c_country"  class="form-control">
+              </div>
+              <div class="form-group row">
+                <div class="col-md-6">
+                  <label for="c_fname" class="text-black">Имя <span class="text-danger">*</span></label>
+                  <input required type="text" class="form-control" id="c_fname" name="c_fname">
+                </div>
+                <div class="col-md-6">
+                  <label for="c_lname" class="text-black">Фамилия <span class="text-danger">*</span></label>
+                  <input required type="text" class="form-control" id="c_lname" name="c_lname">
+                </div>
+              </div>
+    
+    
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <label for="c_city" class="text-black">Адрес <span class="text-danger">*</span></label>
+                  <input required type="text" class="form-control" id="c_city" name="c_city" placeholder="Город">
+                </div>
+              </div>
+  
+              <div class="form-group row">
+                <div class="col-md-6">
+                  <label for="c_street" class="text-black">Улица <span class="text-danger">*</span></label>
+                  <input required type="text" class="form-control" id="c_street" name="c_street">
+                </div>
+                <div class="col-md-6">
+                  <label for="c_postal_zip" class="text-black">Почта/Почтовый индекс <span class="text-danger">*</span></label>
+                  <input required type="text" class="form-control" id="c_postal_zip" name="c_postal_zip">
+                </div>
+              </div>
+    
+              <div class="form-group row mb-5">
+                <div class="col-md-6">
+                  <label for="c_email_address" class="text-black">Email почта <span class="text-danger">*</span></label>
+                  <input required type="text" class="form-control" id="c_email_address" name="c_email_address">
+                </div>
+                <div class="col-md-6">
+                  <label for="c_phone" class="text-black">Номер телефона <span class="text-danger">*</span></label>
+                  <input required type="text" class="form-control" id="c_phone" name="c_phone" placeholder="Номер">
+                </div>
+              </div>
+            
+              <div class="form-group">
+                <label for="c_order_notes" class="text-black">Примечания к заказу</label>
+                <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control"
+                placeholder="Пишите свои заметки сюда..."></textarea>
+              </div>
+              
+              <div class="form-group">
+                <button class="btn btn-primary btn-lg btn-block" type="submit" href="{% url 'addOrder' %}">
+                  Разместить Заказ</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row mb-5">
+              <div class="col-md-12">
+                <h2 class="h3 mb-3 text-black">Ваш Заказ</h2>
+                <div class="p-3 p-lg-5 border">
+                  <table class="table site-block-order-table mb-5">
+                    <thead>
+                      <th>Товар</th>
+                      <th>Общая сумма</th>
+                    </thead>
+                    <tbody>
+                    {% for product in products_cart %}
+                      
+                      <tr>
+                        <td>{{product.name}} <strong class="mx-2">x</strong>{{product.count}}</td>
+                        <td>{{product.sum}} сом</td>
+                      </tr>
+                    {% endfor %}
+                      <tr>
+                        <td class="text-black font-weight-bold"><strong>Корзина Итого</strong></td>
+                        <td class="text-black">{{all_products_total_sum}} сом</td>
+                      </tr>
+                      <tr>
+                        <td class="text-black font-weight-bold"><strong>Итоговая сумма</strong></td>
+                        <td class="text-black font-weight-bold"><strong>{{all_products_total_sum}} сом</strong></td>
+                      </tr>
+                    </tbody>
+                  </table>
+    
+                  <div class="border mb-3">
+                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsebank" role="button"
+                        aria-expanded="false" aria-controls="collapsebank">Экспресс-доставка  “Ылдам Экспресс”</a></h3>
+    
+                    <div class="collapse" id="collapsebank">
+                      <div class="py-2 px-4">
+                        <p class="mb-0">Ылдам Экспресс – Первая Национальная курьерская служба от двери до двери по Кыргызстану и СНГ. Если вам нужно быстро доставить документы или посылку партнерам – воспользуйтесь услугами Ылдам Экспресс. Курьер заберет отправления в Вашем офисе в удобное для Вас время и доставит их получателям в кратчайшие сроки.</p>
+                      </div>
+                    </div>
+                  </div>
+    
+                  <div class="border mb-3">
+                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsecheque" role="button"
+                        aria-expanded="false" aria-controls="collapsecheque">Экспресс-доставка “ДОС Экспресс”</a></h3>
+    
+                    <div class="collapse" id="collapsecheque">
+                      <div class="py-2 px-4">
+                        <p class="mb-0">ОсОО “ДОС Экспресс” - это компания по предоставлению услуг доставки.
+                        Новая компания с новыми идеями. У основателей компании имеется огромный опыт в сфере услуг доставки, несмотря на то, что компания была основана недавно. Мы наняли лучших сотрудников для качественной, быстрой и надежной работы. На сегодняшний день у компании ДОС Экспресс имеются филиалы по всему Кыргызстану</p>
+                      </div>
+                    </div>
+                  </div>
+    
+                  <div class="border mb-5">
+                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsepaypal" role="button"
+                        aria-expanded="false" aria-controls="collapsepaypal">Самовывоз</a></h3>
+    
+                    <div class="collapse" id="collapsepaypal">
+                      <div class="py-2 px-4">
+                        <p class="mb-0">Самовывоз — это способ получения заказа из интернет-магазина, при котором товар не доставляется непосредственно по адресу покупателя, а в офис интернет-магазина, на склад или в специальный пункт выдачи заказов. Многие интернет-магазины предлагают своим покупателям воспользоваться этой возможностью.</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+                
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+    
+    <div class="site-section bg-secondary bg-image" style="background-image: url('C:/Users/bakiy/Downloads/pharma/pharma/images/bg_2.jpg');">
+      <div class="container">
+        <div class="row align-items-stretch">
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('https://scontent.foss1-1.fna.fbcdn.net/v/t1.6435-9/130498082_207290537661173_3839349556469037602_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=9267fe&_nc_ohc=u_x04wEAAkwAX-LwZJz&_nc_ht=scontent.foss1-1.fna&oh=00_AT8diuoJ3G5dcMKAn90NQAxDyi0cU3JbxDyKZcrHbDbqtQ&oe=62C84C74');">
+              <div class="banner-1-inner align-self-center">
+                </p>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('https://scontent.foss1-1.fna.fbcdn.net/v/t39.30808-6/244409998_406698171053741_9144665451599337564_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=a26aad&_nc_ohc=sLD3Cfn2s8AAX8c1HGe&_nc_ht=scontent.foss1-1.fna&oh=00_AT8OO-QsF4Hw0xjDblYuhIcFv8xTt3BdCxn769_OTYH_7A&oe=62A6785F');">
+              <div class="banner-1-inner ml-auto  align-self-center">
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+{% endblock content %}
